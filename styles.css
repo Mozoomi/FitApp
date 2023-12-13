@@ -1,0 +1,136 @@
+/* Single Elements */
+body, h1, h2, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #cdcdcd;
+  color: #ffffff;
+}
+
+button{
+  padding: 1em;
+}
+
+#top-menu li {
+  display: inline-block;
+}
+
+#top-menu ul {
+  list-style: none;
+  font-size: 0;
+  margin-bottom: 2em;
+}
+
+#impBttn {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin: 0em;
+}
+
+#metBttn {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin: 0;
+}
+
+.gender-label{
+  display: block;
+}
+
+.panel {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  color: #333;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+#results tbody tr{
+  background-color: #ffffff;
+}
+
+/* IDs/Classes with Specific Elements */
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: -1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 1.25em;  
+}
+
+div {
+  display: block;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+th, td {
+  display: table-cell;
+  padding: 5px;
+  text-align: left;
+}
+
+input[type="text"], select {
+  width: 90%;
+  padding: 0.6em;
+  margin: 4px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 1em;
+}
+
+.in-ui-foot-span {
+  margin-left: 5px;
+}
+
+.error-field {
+  color: #f00;
+  font-size: 12px;
+  display: none;
+}
+
+/* Media and Others */
+button {
+  background-color: #4c81af;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #396388;
+}
+
+@media only screen and (max-width: 650px) {
+  .panel{
+    margin: 2em;
+  }
+
+  #gender-title{
+    padding-right: 0em;
+    padding-left: 0em;
+  }
+
+  #gender-panel{
+    padding-right: 0em;
+    padding-left: 0em;
+  }
+
+  #age-input{
+    padding: 0em;
+  }
+}

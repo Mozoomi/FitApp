@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Calendar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <script src="fileLoader.js"></script>
+
+    <div class="panel">
+        <div id="top-menu">
+            <ul>
+                <li id="metricBttnList">
+                    <button onclick="toggleUnits('Metric');" id="impBttn"><h2>Imperial Units</h2></button>
+                </li>
+                <li id="imperialBttnList">
+                    <button onclick="toggleUnits('Imperial');" id="metBttn"><h2>Metric Units</h2></button>
+                </li>
+            </ul>
+        </div>
+
+        
+        <form id="calform" onsubmit="return calculateBMR(event);">
+            <table id="cal-input-table">
+                <tbody>
+                    <tr>
+                        <td><h2>Age</h2></td>
+                        <td id="age-input">
+                            <input type="text" id="age" value="25">
+                            <div class="error-field">
+                                required field
+                            </div>
+                            ages 15 - 80
+                        </td>
+
+                        <td id="gender-title"><h2>Gender</h2></td>
+                        <td id="gender-panel">
+                            <label for="gender1" class="gender-label">
+                                <input type="radio" name="gender1" id="gender1" checked onchange="toggleGender('gender1')">
+                                male
+                            </label>
+
+                            <label for="gender2" class="gender-label">
+                                <input type="radio" name="gender2" id="gender2" onchange="toggleGender('gender2')">
+                                female
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table id="imperial-weight-height">
+                <tbody>
+                    <tr id="imperial-height">
+                        <td><h2>Height</h2></td>
+                        <td>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="text" name="feet" id="height-feet" value="5">
+                                            <span class="in-ui-foot-span">feet</span>
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <input type="text" name="height-inch" id="height-inch" value="10">
+                                            <span class="in-ui-foot-span">inches</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr id="imperial-weight">
+                        <td><h2>Weight</h2></td>
+                        <td>
+                            <input type="text" name="pounds" id="pounds" value="165">
+                            <span class="in-ui-foot-span">pounds</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table id="metric-weight-height">
+                <tbody>
+                    <tr id="metric-height">
+                        <td><h2>Height</h2></td>
+                        <td>    
+                            <input type="text" name="cm" id="cm" value="180">
+                            <span class="in-ui-foot-span">cm</span> 
+                        </td>
+                    </tr>
+
+                    <tr id="metric-weight">
+                        <td><h2>Weight</h2></td>
+                        <td>
+                            <input type="text" name="kg" id="kg" value="75">
+                            <span class="in-ui-foot-span">kg</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <td><h2>Activity</h2></td>
+                        <td>
+                            <select name="activity" id="activity">
+                                <option value="1">Basal Metabolic Rate (BMR)</option>
+                                <option value="1.2">Sedentary: little or no exercise</option>
+                                <option value="1.375">Light: exercise 1-3 times/week</option>
+                                <option value="1.465">Moderate: exercise 4-5 times/week</option>
+                                <option value="1.55">Active: daily exercise or intense exercise 3-4 times/week</option>
+                                <option value="1.725">Very Active: intense exercise 6-7 times/week</option>
+                                <option value="1.9">Extra Active: very intense exercise daily, or physical job</option>
+                            </select>                           
+                        </td>
+                    </tr>
+                    <tr>
+                        <input type="submit" name="submit-form" value="Submit">
+                        <input type="button" name="Clear" id="Clear" onclick="clearForm(document.calform)" value="Clear">
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+            <table id="plainBMR">
+                <tr><td><h4>BMR: </h4><span id="BMR-text"></span></td></tr>
+            </table>
+
+            <table id="results">
+                <tbody>
+                    <tr>
+                        <td>Extreme Weight Gain</td>
+                        <td><span id="extremeGain"></span><h4>Calories/day</h4></td>
+                        <td><button onclick="setGoal('extremeGain')">Goal</button></td>
+                    </tr>
+            
+                    <tr>
+                        <td>Weight Gain</td>
+                        <td><span id="weightGain"></span><h4>Calories/day</h4></td>
+                        <td><button onclick="setGoal('weightGain')">Goal</button></td>
+                    </tr>
+            
+                    <tr>
+                        <td>Mild Weight Gain</td>
+                        <td><span id="mildGain"></span><h4>Calories/day</h4></td>
+                        <td><button onclick="setGoal('mildGain')">Goal</button></td>
+                    </tr>
+            
+                    <tr>
+                        <td>Maintain Weight</td>
+                        <td><span id="maintainWeight"></span><h4>Calories/day</h4></td>
+                        <td><button onclick="setGoal('maintainWeight')">Goal</button></td>
+                    </tr>
+            
+                    <tr>
+                        <td>Mild Weight Loss</td>
+                        <td><span id="mildLoss"></span><h4>Calories/day</h4></td>
+                        <td><button onclick="setGoal('mildLoss')">Goal</button></td>
+                    </tr>
+            
+                    <tr>
+                        <td>Weight Loss</td>
+                        <td><span id="weightLoss"></span><h4>Calories/day</h4></td>
+                        <td><button onclick="setGoal('weightLoss')">Goal</button></td>
+                    </tr>
+            
+                    <tr>
+                        <td>Extreme Weight Loss</td>
+                        <td><span id="extremeLoss"></span><h4>Calories/day</h4></td>
+                        <td><button onclick="setGoal('extremeLoss')">Goal</button></td>
+                    </tr>                    
+                </tbody>
+            </table>
+    </div>
+</body>
+<footer>
+    <script src="main.js" defer></script>
+</footer>
+</html>
